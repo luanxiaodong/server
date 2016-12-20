@@ -1,0 +1,9 @@
+option java_package = "com.botech.io.netty.bean"; 
+option java_outer_classname = "BcPackageBuilder"; 
+
+message BcPackage{
+	optional string bctype=1;//业务类型
+	optional int32 bcpriority=2;//消息级别
+	optional string clusteredid=3;//集群服务器ID
+	optional string bcmessage=4;//消息内容
+}

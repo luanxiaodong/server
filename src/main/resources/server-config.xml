@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<!-- server ip -->
+	<ip>192.168.2.137</ip>
+	<!-- server port -->
+	<port>7399</port>
+	<!-- 本地集群ID,Local cluster id. -->
+	<clusteredid>netty5servercluster1</clusteredid>
+	<!-- 是否打开客户端IP地址验证(客户端传bcmessage=clientId:Ipaddress，如果true我们将对其验证，否则不做验证)，Open IP verification -->
+	<openIpValidate>false</openIpValidate>
+	
+	<clusterclient>
+		<!-- 是否启用集群客户端,Enable cluster client. 
+			注意:用户名用的是集群ID.
+		-->
+		<enable>false</enable>
+		<!-- 客户端要连接中心服务器上的netty服务器,netty server ip. -->
+		<serverip>192.168.2.137</serverip>
+		<!-- 端口号,center netty server port. -->
+		<serverport>7399</serverport>
+		<!--间隔单位:TimeUnit.MILLISECONDS ，默认为5秒-->
+		<interval>2000</interval>
+	</clusterclient>
+	
+	<!-- 
+	消息业务：内含客户端集合，通道集合与客户端唯一ID值集合。
+	1.default
+	2.others
+	-->
+	<messageservice>1</messageservice>
+	
+	<LogService>
+		<!-- 是否开启测试日志，如果客户端一连接就打印出客户端的连接总数，并且打印出客户端ID，退出也得打印出总连接数以及退出的客户端 -->
+		<enable>false</enable>
+	</LogService>
+	
+	<webservice>
+		<!-- http://127.0.0.1:7499/webservice -->
+		<!-- 是否在netty服务器上开启webservice服务器 -->
+		<enable>false</enable>
+		<ip>127.0.0.1</ip>
+		<port>7499</port>
+		<name>webservice</name>
+	</webservice>
+	
+	<heartbeat>
+		<!-- 是否启用服务器心跳 ,Enable heart beat.-->
+		<enable>false</enable>
+		<!--间隔单位:TimeUnit.MILLISECONDS ，默认为5秒-->
+		<interval>5000</interval>
+	</heartbeat>
+	
+	<!-- 客户端请求业务号，服务器采用队列机制缓冲业务。 -->
+	<business>
+	
+	<!-- 网管系统到netty中心服务业务 -->
+		
+		<!-- 中心控制网管系统查询业务,包含分页查询，查设备ID是不是在线等 -->
+		<code id="000000" class="com.botech.wgxt.business.PageSearchCtrlBusiness"></code>
+		<!-- 中心控制网管系统，消息转发业务  -->
+		<code id="000001" class="com.botech.wgxt.business.WgxtMsgForwardBusiness"></code>
+	
+	<!-- 客户端到netty中心服务业务 -->
+		<!-- 客户端向中心服务请求采集配置信息。 ********-->
+		<code id="01010001" class="com.botech.wgxt.business.GetGatherConfigBusiness"></code>
+		<!-- 视频质量采集服务根据服务标识获取采集配置信息 ********-->
+		<code id="01010016" class="com.botech.wgxt.business.GetRadioConfigBusiness"></code>
+		<!-- 客户端(调度单元、采集服务、第三方采集服务)请求redis模值和redis集群IP地址。 ******** -->
+		<code id="01010020" class="com.botech.wgxt.business.RedisInfoBusiness"></code>
+		
+		
+		<!-- 采集配置信息发生变更时，中心服务向指定客户端实时推送最新配置信息。 -->
+		<code id="01020002" class="com.botech.wgxt.business.ClientResult2Server"></code>
+		<!-- 运维中心配置的redis模值发生变更时，中心服务向所有客户端推送最新的模值。 -->
+		<code id="01020003" class="com.botech.wgxt.business.ClientResult2Server"></code>
+		<!-- 当视频监控的鉴权配置信息发生变更时，中心服务向客户端(视频质量服务)实时推送该配置信息。 -->
+		<code id="01020017" class="com.botech.wgxt.business.ClientResult2Server"></code>
+		<!-- 当运维中心视频质量服务关联的设备配置信息发生变更时，通过中心服务向指定客户端实时推送变更信息。 -->
+		<code id="01020018" class="com.botech.wgxt.business.ClientResult2Server"></code>
+		<!-- 当运维中心配置的redis集群IP地址发生变更时，中心服务向所有客户端推送该配置信息。  -->
+		<code id="01020019" class="com.botech.wgxt.business.ClientResult2Server"></code>
+	</business>
+	
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="netty5server"
+  id="myeclipse.1438055930538"
+  context-root="/netty5server"
+  j2ee-spec="1.7"
+  archive="netty5server.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+
